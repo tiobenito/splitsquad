@@ -8,6 +8,7 @@ import { computeLeaderboardMetrics } from '../lib/leaderboardEngine';
 import { formatCurrency } from '../utils/money';
 import { EXPENSE_CATEGORIES } from '../constants/categories';
 import type { Group } from '../types';
+import ScreenHeader from '../components/ScreenHeader';
 
 // ---------------------------------------------------------------------------
 // Jungle Avatar Colors
@@ -102,8 +103,8 @@ export default function GroupDetailView() {
     return (
       <>
         <p className="text-text-light mb-4">Group not found.</p>
-        <Link to="/" className="text-white/85 font-bold text-sm no-underline hover:text-white">
-          Back to groups
+        <Link to="/" className="text-canopy font-bold text-sm no-underline hover:text-jungle">
+          &larr; Back to groups
         </Link>
       </>
     );
@@ -139,17 +140,19 @@ export default function GroupDetailView() {
 
   return (
     <>
-      <Link to="/" className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5">
-        &larr; My Groups
-      </Link>
+      <ScreenHeader>
+        <Link to="/" className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5">
+          &larr; My Groups
+        </Link>
 
-      <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
-        {group.name} 🦜
-      </h1>
-      <p className="text-white/80 font-bold text-sm">
-        {group.members.length} friend{group.members.length !== 1 ? 's' : ''} &middot;{' '}
-        {group.expenses.length} expense{group.expenses.length !== 1 ? 's' : ''}
-      </p>
+        <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
+          {group.name} 🦜
+        </h1>
+        <p className="text-white/80 font-bold text-sm">
+          {group.members.length} friend{group.members.length !== 1 ? 's' : ''} &middot;{' '}
+          {group.expenses.length} expense{group.expenses.length !== 1 ? 's' : ''}
+        </p>
+      </ScreenHeader>
 
       {/* Stats Row */}
       {group.expenses.length > 0 && (

@@ -5,6 +5,7 @@ import { computeBalances } from '../lib/balanceEngine';
 import { formatCurrency } from '../utils/money';
 import { useCountUp } from '../hooks/useCountUp';
 import type { Group } from '../types';
+import ScreenHeader from '../components/ScreenHeader';
 
 // ---------------------------------------------------------------------------
 // Avatar colors
@@ -112,12 +113,14 @@ export default function AllBalancesView() {
   if (groups.length === 0 || !hasAnyExpenses) {
     return (
       <>
-        <Link to="/" className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5">
-          &larr; Back to groups
-        </Link>
-        <h1 className="font-display text-[2.8rem] text-white leading-none mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
-          All Balances
-        </h1>
+        <ScreenHeader>
+          <Link to="/" className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5">
+            &larr; Back to groups
+          </Link>
+          <h1 className="font-display text-[2.8rem] text-white leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
+            All Balances
+          </h1>
+        </ScreenHeader>
         <p className="text-text-light text-center mt-12 font-semibold">No expenses across any group yet.</p>
       </>
     );
@@ -130,14 +133,16 @@ export default function AllBalancesView() {
 
   return (
     <>
-      <Link to="/" className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5">
-        &larr; Back to groups
-      </Link>
+      <ScreenHeader>
+        <Link to="/" className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5">
+          &larr; Back to groups
+        </Link>
 
-      <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
-        All Balances
-      </h1>
-      <p className="text-white/80 font-bold text-sm mb-6">Across all groups</p>
+        <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
+          All Balances
+        </h1>
+        <p className="text-white/80 font-bold text-sm">Across all groups</p>
+      </ScreenHeader>
 
       {allSettled ? (
         <div className="text-center py-16">

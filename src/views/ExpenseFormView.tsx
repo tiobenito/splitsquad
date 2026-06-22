@@ -5,6 +5,7 @@ import { useAppStore } from '../store';
 import { calculateSplits, evenSplit } from '../lib/splitCalculator';
 import { toCents, formatCurrency } from '../utils/money';
 import { EXPENSE_CATEGORIES } from '../constants/categories';
+import ScreenHeader from '../components/ScreenHeader';
 
 type SplitMode = 'even' | 'amount' | 'percent';
 
@@ -169,8 +170,8 @@ export default function ExpenseFormView() {
     return (
       <>
         <p className="text-parrot-red mb-4 font-semibold">Group not found.</p>
-        <Link to="/" className="text-white/85 font-bold text-sm no-underline hover:text-white">
-          Back to groups
+        <Link to="/" className="text-canopy font-bold text-sm no-underline hover:text-jungle">
+          &larr; Back to groups
         </Link>
       </>
     );
@@ -180,8 +181,8 @@ export default function ExpenseFormView() {
     return (
       <>
         <p className="text-parrot-red mb-4 font-semibold">Expense not found.</p>
-        <Link to={`/groups/${groupId}`} className="text-white/85 font-bold text-sm no-underline hover:text-white">
-          Back to group
+        <Link to={`/groups/${groupId}`} className="text-canopy font-bold text-sm no-underline hover:text-jungle">
+          &larr; Back to group
         </Link>
       </>
     );
@@ -203,13 +204,15 @@ export default function ExpenseFormView() {
 
   return (
     <>
-      <Link to={`/groups/${groupId}`} className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5">
-        &larr; Back to {group.name}
-      </Link>
+      <ScreenHeader>
+        <Link to={`/groups/${groupId}`} className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5">
+          &larr; Back to {group.name}
+        </Link>
 
-      <h1 className="font-display text-[2.8rem] text-white leading-none mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
-        {isEditMode ? 'Edit Expense' : 'Add Expense'}
-      </h1>
+        <h1 className="font-display text-[2.8rem] text-white leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
+          {isEditMode ? 'Edit Expense' : 'Add Expense'}
+        </h1>
+      </ScreenHeader>
 
       <form onSubmit={handleSubmit}>
         {/* Description */}

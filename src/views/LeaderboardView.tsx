@@ -6,6 +6,7 @@ import { computeLeaderboardMetrics, type MemberMetrics } from '../lib/leaderboar
 import { assignTitles, TITLE_LABELS, type TitleKey } from '../lib/titleEngine';
 import { useFLIP } from '../hooks/useFLIP';
 import { formatCurrency } from '../utils/money';
+import ScreenHeader from '../components/ScreenHeader';
 
 // ---------------------------------------------------------------------------
 // Title badge colors — jungle palette
@@ -156,9 +157,9 @@ export default function LeaderboardView() {
         <p className="text-text-light mb-4 font-semibold">Group not found.</p>
         <button
           onClick={() => navigate('/')}
-          className="text-white/85 font-bold text-sm hover:text-white"
+          className="text-canopy font-bold text-sm hover:text-jungle"
         >
-          Back to groups
+          &larr; Back to groups
         </button>
       </>
     );
@@ -167,16 +168,18 @@ export default function LeaderboardView() {
   if (group.members.length < 2) {
     return (
       <>
-        <Link
-          to={`/groups/${group.id}`}
-          className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5"
-        >
-          &larr; Back to group
-        </Link>
-        <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
-          {group.name}
-        </h1>
-        <p className="text-white/80 font-bold text-sm mb-6">Leaderboard</p>
+        <ScreenHeader>
+          <Link
+            to={`/groups/${group.id}`}
+            className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5"
+          >
+            &larr; Back to group
+          </Link>
+          <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
+            {group.name}
+          </h1>
+          <p className="text-white/80 font-bold text-sm">Leaderboard</p>
+        </ScreenHeader>
         <div className="text-center py-12 bg-white rounded-[20px] shadow-[0_6px_20px_rgba(45,106,79,0.08)]">
           <p className="text-4xl mb-4 text-text-light">+</p>
           <p className="font-bold text-text-dark">Add at least 2 members to see the leaderboard</p>
@@ -189,16 +192,18 @@ export default function LeaderboardView() {
   if (group.expenses.length === 0) {
     return (
       <>
-        <Link
-          to={`/groups/${group.id}`}
-          className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5"
-        >
-          &larr; Back to group
-        </Link>
-        <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
-          {group.name}
-        </h1>
-        <p className="text-white/80 font-bold text-sm mb-6">Leaderboard</p>
+        <ScreenHeader>
+          <Link
+            to={`/groups/${group.id}`}
+            className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5"
+          >
+            &larr; Back to group
+          </Link>
+          <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
+            {group.name}
+          </h1>
+          <p className="text-white/80 font-bold text-sm">Leaderboard</p>
+        </ScreenHeader>
         <div className="text-center py-16 border-2 border-dashed border-leaf/30 rounded-[20px] bg-white/50">
           <div className="text-5xl mb-4 text-text-light font-display">#1</div>
           <h2 className="text-lg font-display mb-2">
@@ -235,17 +240,19 @@ export default function LeaderboardView() {
 
   return (
     <>
-      <Link
-        to={`/groups/${group.id}`}
-        className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5"
-      >
-        &larr; Back to group
-      </Link>
+      <ScreenHeader>
+        <Link
+          to={`/groups/${group.id}`}
+          className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5"
+        >
+          &larr; Back to group
+        </Link>
 
-      <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
-        {group.name}
-      </h1>
-      <p className="text-white/80 font-bold text-sm mb-6">Leaderboard</p>
+        <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
+          {group.name}
+        </h1>
+        <p className="text-white/80 font-bold text-sm">Leaderboard</p>
+      </ScreenHeader>
 
       <MiniLeaderboard
         heading="Biggest Spender"

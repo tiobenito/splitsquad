@@ -8,6 +8,7 @@ import { formatCurrency } from '../utils/money';
 import { useCountUp } from '../hooks/useCountUp';
 import ConfettiExplosion from 'react-confetti-explosion';
 import type { Balance, Transaction } from '../types';
+import ScreenHeader from '../components/ScreenHeader';
 
 // ---------------------------------------------------------------------------
 // Avatar colors
@@ -202,8 +203,8 @@ export default function BalancesView() {
     return (
       <>
         <p className="text-text-light mb-4 font-semibold">Group not found.</p>
-        <Link to="/" className="text-white/85 font-bold text-sm no-underline hover:text-white">
-          Back to groups
+        <Link to="/" className="text-canopy font-bold text-sm no-underline hover:text-jungle">
+          &larr; Back to groups
         </Link>
       </>
     );
@@ -212,12 +213,14 @@ export default function BalancesView() {
   if (group.members.length === 0) {
     return (
       <>
-        <Link to={`/groups/${group.id}`} className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5">
-          &larr; Back to group
-        </Link>
-        <h1 className="font-display text-[2.8rem] text-white leading-none mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
-          {group.name}
-        </h1>
+        <ScreenHeader>
+          <Link to={`/groups/${group.id}`} className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5">
+            &larr; Back to group
+          </Link>
+          <h1 className="font-display text-[2.8rem] text-white leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
+            {group.name}
+          </h1>
+        </ScreenHeader>
         <p className="text-text-light text-sm font-semibold">Add members to see balances.</p>
       </>
     );
@@ -226,12 +229,14 @@ export default function BalancesView() {
   if (group.expenses.length === 0) {
     return (
       <>
-        <Link to={`/groups/${group.id}`} className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5">
-          &larr; Back to group
-        </Link>
-        <h1 className="font-display text-[2.8rem] text-white leading-none mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
-          {group.name}
-        </h1>
+        <ScreenHeader>
+          <Link to={`/groups/${group.id}`} className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5">
+            &larr; Back to group
+          </Link>
+          <h1 className="font-display text-[2.8rem] text-white leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
+            {group.name}
+          </h1>
+        </ScreenHeader>
         <p className="text-text-light text-sm font-semibold">Add expenses to see who owes whom.</p>
       </>
     );
@@ -274,17 +279,19 @@ export default function BalancesView() {
         </div>
       )}
 
-      <Link
-        to={`/groups/${group.id}`}
-        className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5"
-      >
-        &larr; Back to group
-      </Link>
+      <ScreenHeader>
+        <Link
+          to={`/groups/${group.id}`}
+          className="text-white/85 font-bold text-sm no-underline hover:text-white inline-block mb-3.5"
+        >
+          &larr; Back to group
+        </Link>
 
-      <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
-        {group.name}
-      </h1>
-      <p className="text-white/80 font-bold text-sm mb-6">Balances</p>
+        <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
+          {group.name}
+        </h1>
+        <p className="text-white/80 font-bold text-sm">Balances</p>
+      </ScreenHeader>
 
       <BalanceChart
         balances={balances}

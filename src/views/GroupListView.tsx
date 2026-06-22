@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 import { useShallow } from 'zustand/react/shallow';
 import { useAppStore } from '../store';
+import ScreenHeader from '../components/ScreenHeader';
 
 export default function GroupListView() {
   const [newGroupName, setNewGroupName] = useState('');
@@ -24,21 +25,23 @@ export default function GroupListView() {
 
   return (
     <>
-      <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
-        SplitSquad 🦜
-      </h1>
-      <p className="text-white/80 font-bold text-sm mb-5">
-        {groups.length} group{groups.length !== 1 ? 's' : ''}
-      </p>
+      <ScreenHeader>
+        <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
+          SplitSquad 🦜
+        </h1>
+        <p className="text-white/80 font-bold text-sm">
+          {groups.length} group{groups.length !== 1 ? 's' : ''}
+        </p>
 
-      {groups.some((g) => g.expenses.length > 0) && (
-        <Link
-          to="/balances"
-          className="inline-block mb-5 text-white/85 font-bold text-sm no-underline hover:text-white transition-colors"
-        >
-          View all balances across groups &rarr;
-        </Link>
-      )}
+        {groups.some((g) => g.expenses.length > 0) && (
+          <Link
+            to="/balances"
+            className="inline-block mt-3 text-white/85 font-bold text-sm no-underline hover:text-white transition-colors"
+          >
+            View all balances across groups &rarr;
+          </Link>
+        )}
+      </ScreenHeader>
 
       <form onSubmit={handleSubmit} className="flex gap-2 mb-6">
         <input
