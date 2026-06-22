@@ -2,7 +2,7 @@
 
 Group expense splitting without the account overhead. Create a group, add people, log what you spent — SplitSquad does the math.
 
-**[Live demo →](https://splitsquad-beta.vercel.app)**
+**[Live demo →](https://splitsquad-app.vercel.app)**
 
 ---
 
