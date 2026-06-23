@@ -26,12 +26,17 @@ export default function GroupListView() {
   return (
     <>
       <ScreenHeader>
-        <h1 className="font-display text-[2.8rem] text-white leading-none mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
+        <h1 className="font-display text-[2.8rem] text-white leading-none mb-1.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]">
           SplitSquad 🦜
         </h1>
-        <p className="text-white/80 font-bold text-sm">
-          {groups.length} group{groups.length !== 1 ? 's' : ''}
+        <p className="text-white/90 font-bold text-sm leading-snug">
+          Split shared expenses with friends — no signups, no awkward math.
         </p>
+        {groups.length > 0 && (
+          <p className="text-white/70 font-bold text-xs mt-1">
+            {groups.length} group{groups.length !== 1 ? 's' : ''}
+          </p>
+        )}
 
         {groups.some((g) => g.expenses.length > 0) && (
           <Link
@@ -60,9 +65,25 @@ export default function GroupListView() {
       </form>
 
       {sortedGroups.length === 0 ? (
-        <p className="text-text-light text-center mt-12 font-semibold">
-          No groups yet. Create one above to get started! 🌴
-        </p>
+        <div className="mt-10 text-center">
+          <p className="font-display text-2xl text-text-dark">Start with a group 🌴</p>
+          <p className="text-text-light text-sm font-semibold mt-1 mb-7">
+            A trip, a house, a dinner — anything you share costs on. Name it above and hit Create.
+          </p>
+          <div className="grid grid-cols-3 gap-3 text-left">
+            {[
+              { n: '1', t: 'Create a group', e: '🌴' },
+              { n: '2', t: 'Add your friends', e: '🐒' },
+              { n: '3', t: 'Log expenses — we tally who owes who', e: '🧾' },
+            ].map((s) => (
+              <div key={s.n} className="bg-white rounded-[18px] p-4 shadow-[0_4px_16px_rgba(45,106,79,0.06)]">
+                <div className="text-2xl mb-2">{s.e}</div>
+                <div className="font-display text-canopy text-lg leading-none mb-1">Step {s.n}</div>
+                <div className="text-xs text-text-light font-semibold leading-snug">{s.t}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       ) : (
         <ul className="space-y-3">
           {sortedGroups.map((group) => (

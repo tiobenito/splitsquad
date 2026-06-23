@@ -197,9 +197,7 @@ export default function GroupDetailView() {
           </button>
         </form>
 
-        {group.members.length === 0 ? (
-          <p className="text-text-light text-sm font-semibold">No members yet. Add friends above.</p>
-        ) : (
+        {group.members.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {group.members.map((member, index) => {
               const removable = canRemoveMember(group, member.id);
@@ -273,7 +271,11 @@ export default function GroupDetailView() {
         </div>
 
         {group.expenses.length === 0 ? (
-          <p className="text-text-light text-sm font-semibold">No expenses yet. Add one to start splitting!</p>
+          <p className="text-text-light text-sm font-semibold">
+            {group.members.length === 0
+              ? 'Add a couple of friends above first — then log what everyone spent.'
+              : 'No expenses yet. Add one below to start splitting!'}
+          </p>
         ) : (
           <div>
             {group.expenses.map((expense) => {
@@ -337,16 +339,14 @@ export default function GroupDetailView() {
         )}
       </div>
 
-      {/* Add Expense Button */}
-      {group.members.length > 0 ? (
+      {/* Add Expense Button — only once there are members to split between */}
+      {group.members.length > 0 && (
         <Link
           to={`/groups/${group.id}/expenses/new`}
           className="w-full bg-gradient-to-r from-canopy to-leaf text-white rounded-full py-4 font-display text-lg shadow-[0_6px_24px_rgba(64,145,108,0.25)] hover:-translate-y-0.5 transition-transform flex items-center justify-center gap-2 no-underline mt-1"
         >
           <span>+</span> Add Expense
         </Link>
-      ) : (
-        <p className="text-center text-text-light text-sm font-semibold mt-4">Add members first to create expenses</p>
       )}
     </>
   );
