@@ -30,7 +30,7 @@ export default function GroupListView() {
           SplitSquad 🦜
         </h1>
         <p className="text-white/90 font-bold text-sm leading-snug">
-          Split shared expenses with friends — no signups, no awkward math.
+          Split shared expenses with friends.
         </p>
         {groups.length > 0 && (
           <p className="text-white/70 font-bold text-xs mt-1">
